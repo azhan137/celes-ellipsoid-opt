@@ -1,0 +1,25 @@
+%%test agreement between axial_rotation(T) and compute_T_angle where the
+%%following:
+%axial_rotation(T): compute T in particle frame, rotate to lab frame
+%compute_T_angle: compute T in lab frame
+
+lmax = 4;
+Ntheta = 30;
+Nphi = 30;
+ellip_params = [1000,600,1000];
+perp_ellip_params = [600,1000,1000];
+ni = 1;
+ns = 1.52;
+lambda = 1550;
+alpha = pi/2;
+
+%compute particle frame T and dT
+[T_p,dT_p] = compute_T(lmax,Ntheta,Nphi,ellip_params,ni,ns,lambda);
+%rotate from particle frame into lab frame
+[T_rl,dT_rl] = axial_rotation(lmax,T_p,dT_p,alpha);
+
+%compute lab frame T and dT directly using different parameterization
+[T_l,dT_l] = compute_T_angle(lmax,Ntheta,Nphi,[ellip_params,alpha],ni,ns,lambda);
+
+%compute lab frame T and dT directly
+[T_c,dT_c] = compute_T(lmax,Ntheta,Nphi,perp_ellip_params,ni,ns,lambda);
