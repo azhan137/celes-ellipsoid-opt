@@ -1,0 +1,2 @@
+# celes-ellipsoid-opt
+ An extension of an early version of the CELES simulation toolbox to be compatible with ellipsoidal scatterers. In addition, includes adjoint optimization-based routines for spherical and ellipsoidal particles. Ellipsoidal T-matrices are calculated using the extended boundary condition method and are not reliable for very high aspect ratios or for very densely packed scatterers.
